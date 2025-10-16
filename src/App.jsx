@@ -12,9 +12,11 @@ function App() {
   const [newPerson, setNewPerson] = useState({ name: '', number: '' })
   const [searchTerm, setSearchTerm] = useState('')
 
+  const baseURL = 'https://phonebook-backend-ccaj.onrender.com'
+
 useEffect(() => {
     axios
-    .get('http://localhost:3001/api/persons')
+    .get(`${baseURL}/api/persons`)
     .then(res => {
       console.log('数据拿到啦');
       setPersons(res.data);
@@ -48,7 +50,7 @@ useEffect(() => {
       alert(`${newPerson.name} is already added to phonebook`)
     } else {
       axios
-      .post('http://localhost:3001/api/persons', newPerson)
+      .post(`${baseURL}/api/persons`, newPerson)
       .then(res => {
           console.log('添加成功:', res.data);
           setPersons(persons.concat(res.data))
